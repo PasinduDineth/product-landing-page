@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+    margin-bottom: unset !important;
+}
+
+p {
+    margin-bottom: unset !important;
+    max-width: unset !important;
+}
+a {
+    text-decoration: unset !important;
+    color: unset !important;
+}
