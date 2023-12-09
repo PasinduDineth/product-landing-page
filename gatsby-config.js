@@ -3,10 +3,11 @@
  *
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
-
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -44,4 +45,15 @@ module.exports = {
       },
     },
   ],
+  developMiddleware: (app) => {
+    app.use(
+      '/api', // Change this path to match your API endpoints
+      createProxyMiddleware({
+        target: 'http://localhost:3001', // Replace with your API server URL
+        pathRewrite: {
+          '^/api': '', // If your API endpoints are not prefixed with /api, adjust accordingly
+        },
+      })
+    );
+  },
 }
